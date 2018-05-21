@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script>
+            var webSocket = new WebSocket('ws://127.0.0.1:8080/test/hi');
+
+            webSocket.onopen = function(event) {
+                alert('onopen');
+                webSocket.send("12345");
+                setTimeout(function () {webSocket.send("67890");}, 1000)
+                setTimeout(function () {webSocket.close();}, 2000)
+            };
+
+            webSocket.onmessage = function(event) {
+                alert('onmessage, ' + event.data);
+            };
+
+            webSocket.onclose = function(event) {
+                alert('onclose');
+            };
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
